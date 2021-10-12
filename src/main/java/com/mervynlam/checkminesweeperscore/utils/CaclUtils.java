@@ -74,9 +74,8 @@ public class CaclUtils {
         //打印信息
         System.out.println("包含标识：");
         for (String userId : userIdSet) {
-            System.out.print(userId + "\t");
+            System.out.println(userId);
         }
-        System.out.println();
 
         System.out.print(String.format("%3s%4s%1s","Beg", "Time", "："));
         for (double begT : begTime) {
