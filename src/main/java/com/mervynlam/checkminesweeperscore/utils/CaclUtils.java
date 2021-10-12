@@ -131,15 +131,15 @@ public class CaclUtils {
 
     private static List<Double> getTimeList(List<VideoDisplayBean> sourceList, int maxNum) {
         return sourceList.stream().map(bean -> Double.valueOf(bean.getTime()))
-                .limit(maxNum)
                 .sorted((double1, double2) -> doubleCompare(double1, double2))
+                .limit(maxNum)
                 .collect(Collectors.toList());
     }
 
     private static List<Double> getBvsList(List<VideoDisplayBean> sourceList, int maxNum) {
         return sourceList.stream().map(bean -> Double.valueOf(bean.getBbbvs()))
-                .limit(maxNum)
                 .sorted((double1, double2) -> doubleCompare(double2, double1))
+                .limit(maxNum)
                 .collect(Collectors.toList());
     }
 
