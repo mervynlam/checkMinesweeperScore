@@ -14,8 +14,7 @@ import java.util.stream.Collectors;
 
 public class CaclUtils {
     public static void calcScore(int begNum, int intNum, int expNum) {
-//        File dir = new File(System.getProperty("user.dir"));
-        File dir = new File("./avf");
+        File dir = new File(System.getProperty("user.dir"));
         File[] files = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String name) {
                 return name.endsWith(".avf");
