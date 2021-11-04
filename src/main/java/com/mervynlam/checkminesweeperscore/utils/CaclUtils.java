@@ -109,10 +109,12 @@ public class CaclUtils {
         }
         System.out.println();
 
+        String games = String.format("%6s：%6d %6d %6d", "局数", begVideos.size(), intVideos.size(), expVideos.size());
         String tTotal = String.format("%7s：%6.2f + %6.2f + %6.2f = %6.2f", "Time", begTimeTotal, intTimeTotal, expTimeTotal, add(begTimeTotal, add(intTimeTotal, expTimeTotal)));
         String tEdgeTotal = String.format("%7s：%6.2f   %6.2f   %6.2f", "Edge", begTimeEdge, intTimeEdge, expTimeEdge);
         String bTotal = String.format("%7s：%6.2f + %6.2f + %6.2f = %6.2f", "Bvs", begBVSTotal, intBVSTotal, expBVSTotal, add(begBVSTotal, add(intBVSTotal, expBVSTotal)));
         String bEdgeTotal = String.format("%7s：%6.2f   %6.2f   %6.2f", "Edge", begBVSEdge, intBVSEdge, expBVSEdge);
+        System.out.println(games);
         System.out.println(tTotal);
         System.out.println(tEdgeTotal);
         System.out.println(bTotal);
