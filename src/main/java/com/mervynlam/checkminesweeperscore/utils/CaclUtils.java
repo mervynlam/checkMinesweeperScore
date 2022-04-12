@@ -67,9 +67,15 @@ public class CaclUtils {
         double begTimeEdge = getEdge(begTime, begNum);
         double intTimeEdge = getEdge(intTime, intNum);
         double expTimeEdge = getEdge(expTime, expNum);
+        double begTimeAvg = getAvg(begTime);
+        double intTimeAvg = getAvg(intTime);
+        double expTimeAvg = getAvg(expTime);
         double begBVSEdge = getEdge(begBVS, begNum);
         double intBVSEdge = getEdge(intBVS, intNum);
         double expBVSEdge = getEdge(expBVS, expNum);
+        double begBVSAvg = getAvg(begBVS);
+        double intBVSAvg = getAvg(intBVS);
+        double expBVSAvg = getAvg(expBVS);
 
         //打印信息
         System.out.println("包含标识：");
@@ -82,25 +88,26 @@ public class CaclUtils {
             System.out.print(String.format("%6.2f  ",begT));
         }
         System.out.println();
-        System.out.print(String.format("%3s%4s%1s","Int", "Time", "："));
-        for (double intT : intTime) {
-            System.out.print(String.format("%6.2f  ",intT));
-        }
-        System.out.println();
-        System.out.print(String.format("%3s%4s%1s","Exp", "Time", "："));
-        for (double expT : expTime) {
-            System.out.print(String.format("%6.2f  ",expT));
-        }
-        System.out.println();
-
         System.out.print(String.format("%3s%4s%1s","Beg", "Bvs", "："));
         for (double begB : begBVS) {
             System.out.print(String.format("%6.2f  ",begB));
         }
         System.out.println();
+
+        System.out.print(String.format("%3s%4s%1s","Int", "Time", "："));
+        for (double intT : intTime) {
+            System.out.print(String.format("%6.2f  ",intT));
+        }
+        System.out.println();
         System.out.print(String.format("%3s%4s%1s","Int", "Bvs", "："));
         for (double intB : intBVS) {
             System.out.print(String.format("%6.2f  ",intB));
+        }
+        System.out.println();
+
+        System.out.print(String.format("%3s%4s%1s","Exp", "Time", "："));
+        for (double expT : expTime) {
+            System.out.print(String.format("%6.2f  ",expT));
         }
         System.out.println();
         System.out.print(String.format("%3s%4s%1s","Exp", "Bvs", "："));
@@ -112,13 +119,17 @@ public class CaclUtils {
         String games = String.format("%6s：%6d %6d %6d", "局数", begVideos.size(), intVideos.size(), expVideos.size());
         String tTotal = String.format("%7s：%6.2f + %6.2f + %6.2f = %6.2f", "Time", begTimeTotal, intTimeTotal, expTimeTotal, add(begTimeTotal, add(intTimeTotal, expTimeTotal)));
         String tEdgeTotal = String.format("%7s：%6.2f   %6.2f   %6.2f", "Edge", begTimeEdge, intTimeEdge, expTimeEdge);
+        String tAvg = String.format("%7s：%6.2f   %6.2f   %6.2f", "Avg", begTimeAvg, intTimeAvg, expTimeAvg);
         String bTotal = String.format("%7s：%6.2f + %6.2f + %6.2f = %6.2f", "Bvs", begBVSTotal, intBVSTotal, expBVSTotal, add(begBVSTotal, add(intBVSTotal, expBVSTotal)));
         String bEdgeTotal = String.format("%7s：%6.2f   %6.2f   %6.2f", "Edge", begBVSEdge, intBVSEdge, expBVSEdge);
+        String bAvg = String.format("%7s：%6.2f   %6.2f   %6.2f", "Avg", begBVSAvg, intBVSAvg, expBVSAvg);
         System.out.println(games);
         System.out.println(tTotal);
         System.out.println(tEdgeTotal);
+        System.out.println(tAvg);
         System.out.println(bTotal);
         System.out.println(bEdgeTotal);
+        System.out.println(bAvg);
     }
 
     private static double add(double v1,double v2){
@@ -159,6 +170,10 @@ public class CaclUtils {
 
     private static Double getEdge(List<Double> list, int maxNum) {
         return list.size()>=maxNum?list.get(maxNum-1):0.0;
+    }
+
+    private static Double getAvg(List<Double> list) {
+        return list.stream().mapToDouble(num -> num).average().getAsDouble();
     }
 
     private static Set<String> getUserId(List<VideoDisplayBean> videoList) {
